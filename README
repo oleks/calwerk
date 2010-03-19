@@ -1,0 +1,69 @@
++=======+
+| Intro |
++=======+
+Have you ever thought of noting your working hours in google calendar, but
+haven't had a decent way to export it? Well, that's why I've put together
+this quick python script.
++======+
+| Desc |
++======+
+Basically it caculates the number of busy hours and days within a given 
+time-frame presented behind a url to an ics file.
++=======+
+| Usage |
++=======+
+(in the following a '>' symbolises a prompt)
+
+Run the program simply by using your regular python shell command:
+
+> python calwerk.py <ics-url>
+
+Where you replace '<ics-url>' with your own url (not containing spaces),
+otherwise remember the double-quotes around. The most practical here are
+your private calendar urls in your Google
+Calendar(http://www.google.com/support/calendar/bin/answer.py?hl=en&answer=37648),
+if you're into that sort of thing.
+
+This will print a table containing all the dates on which you were busy, as
+well as the duration of that event. If you were busy several times during
+the day, those represented as seperate rows in the table.
+
+At the end you are presented with the total number of days that you were
+busy, and the total number of hourse.
+
+You can also do the aforementioned for several csv files at once, if you
+for example are working two jobs or alike.
+
+> python calwerk.py <ics-url-1> <ics-url-2> ..
+
+Where ".." represents other <ics-url>'s.
+
+
+Of course, this script wouldn't be complete without the ability to do this
+between several dates. For this there are (both optional) start and end
+date attributes:
+
+> python calwerk.py s:dd-MM-yyyy e:dd-MM-yyyy <ics-url>
+
+Where you must provide the dates in the mentioned format, i.e.
+'e:19-03-2010'. This will take 
+
+Of course, since you can read several urls, you can also limit several
+reads, precisely like this:
+
+> python calwerk.py e:19-03-2010 s:15-03-2010 <ics-url> <ics-url-2> ..
+
+Then, the script will use the same limit for all of them(notice how the
+order of the start/end date combination does not matter), untill overriden,
+like this:
+
+> python calwerk.py s:15-03-2010 <ics-url> <ics-url-2> s:19-03-2010 <ics-url-3>
+
+However, you MUST provide the limits before the calendar, if you want the
+calendar limited, otherwise the use is rather dynamic
++=======+
+| Outro |
++=======+
+Of course, most of us have the same calendar to look up every month before
+we hand in our work sheet, so feel free to branch and hard-code the urls to
+read!

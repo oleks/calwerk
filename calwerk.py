@@ -1,8 +1,7 @@
 import re, datetime, urllib2, sys
-
 from datetime import datetime
-from datetime import date
 
+#recursive read untill of file untill all expressions are in r or end of file
 def recRead(f, e, r):
     if e == []:
         return r
@@ -15,6 +14,7 @@ def recRead(f, e, r):
             r.append(result)
             return recRead(f, e[1:], r)
 
+#compares two datetime objects
 def daycmp(d1,d2):
     if d1[0] > d2[0]:
         return 1
@@ -23,15 +23,18 @@ def daycmp(d1,d2):
     else:  #x < y
         return -1
 
+#repeats a character c a w number of times
 def repeat(c, w):
     return "" if w == 0 else c+repeat(c,w-1)
 
+#pads with space to fit a text t to a length l
 def centerline(t,l):
     tl = l - len(t)
     w = tl/2
     spc = repeat(" ", w)
     return spc + t + (spc if (tl % 2) == 0 else spc+" ")
-    
+
+#frames a text to fit a certain length, with certain horizontal(h), vertical(v) and corner(c) characters
 def frame(t, l, v = "-", h="|", c="+"):
     l = l-2
     hb = c + repeat(v,l) + c
@@ -39,7 +42,7 @@ def frame(t, l, v = "-", h="|", c="+"):
     print h + centerline(t, l) + h
     print hb
 
-
+#reads an ics file at url between (optionally) given dates
 def read(url, startdate=None, enddate=None):
     print url
     f = urllib2.urlopen(url)
@@ -66,7 +69,7 @@ def read(url, startdate=None, enddate=None):
         if r == []:
             break
         #read day and check if it's within bounds
-        day = datetime.strptime(r[0].group(1), "%Y%m%d")
+        day = datetime.strptime(r[0].group(1)+r[0].group(2), "%Y%m%d%H%M")
         if startdate != None and day < startdate:
             continue
         if enddate != None and day >= enddate:
@@ -108,6 +111,7 @@ def read(url, startdate=None, enddate=None):
         frame(title, l, "=")
         frame(s, l)
 
+#does all the work of parsing the arguments
 if __name__ == "__main__":
     startdate = enddate = None
     for arg in sys.argv[1:]:
