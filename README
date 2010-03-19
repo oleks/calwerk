@@ -18,49 +18,49 @@ Run the program simply by using your regular python shell command:
 
 > python calwerk.py <ics-url>
 
-Where you replace '<ics-url>' with your own url (not containing spaces),
-otherwise remember the double-quotes around. The most practical here are
+Where you replace '<ics-url>' with your own url (not containing spaces,
+otherwise remember the double-quotes around). The most practical here are
 your private calendar urls in your Google
 Calendar(http://www.google.com/support/calendar/bin/answer.py?hl=en&answer=37648),
 if you're into that sort of thing.
 
-This will print a table containing all the dates on which you were busy, as
-well as the duration of that event. If you were busy several times during
-the day, those represented as seperate rows in the table.
+As a result, you are presented with a title to a table containing all the 
+dates on which you were busy, as well as the duration of those events. If 
+you were busy several times during the day, those represented as seperate 
+rows in the table, but still in chronological order. As the footer of that 
+table you get  the total number of days that you were busy, and the total 
+number of hours.
 
-At the end you are presented with the total number of days that you were
-busy, and the total number of hourse.
-
-You can also do the aforementioned for several csv files at once, if you
-for example are working two jobs or alike.
+You can also do the aforementioned for several csv files at once, if you,
+for example, are working two jobs at once:
 
 > python calwerk.py <ics-url-1> <ics-url-2> ..
 
-Where ".." represents other <ics-url>'s.
-
+Where ".." represents a finite number of other <ics-url>'s.
 
 Of course, this script wouldn't be complete without the ability to do this
-between several dates. For this there are (both optional) start and end
-date attributes:
+between several dates. For this there are (both optional) start and end 
+date attributes prefixed by 's:' and 'e:' respectively:
 
 > python calwerk.py s:dd-MM-yyyy e:dd-MM-yyyy <ics-url>
 
-Where you must provide the dates in the mentioned format, i.e.
-'e:19-03-2010'. This will take 
+Here you must provide the dates in the mentioned format, i.e.
+'e:19-03-2010'. This will result in a table containing events the occured
+on either the start-, enddate or a date in between them.
 
 Of course, since you can read several urls, you can also limit several
 reads, precisely like this:
 
 > python calwerk.py e:19-03-2010 s:15-03-2010 <ics-url> <ics-url-2> ..
 
-Then, the script will use the same limit for all of them(notice how the
+Then, the script will use the same limit for all of the urls(notice how the
 order of the start/end date combination does not matter), untill overriden,
 like this:
 
 > python calwerk.py s:15-03-2010 <ics-url> <ics-url-2> s:19-03-2010 <ics-url-3>
 
 However, you MUST provide the limits before the calendar, if you want the
-calendar limited, otherwise the use is rather dynamic
+output limited, otherwise the use is rather dynamic.
 +=======+
 | Outro |
 +=======+
