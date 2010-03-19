@@ -60,7 +60,7 @@ like this:
 > python calwerk.py s:15-03-2010 <ics-url> <ics-url-2> s:19-03-2010 <ics-url-3>
 
 However, you MUST provide the limits before the calendar, if you want the
-output limited, otherwise the use is rather dynamic.
+output limited.
 +=======+
 | Outro |
 +=======+
