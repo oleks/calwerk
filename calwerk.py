@@ -58,7 +58,7 @@ def read(url, startdate=None, enddate=None):
     #regexes to find start, end and description
     startex = re.compile(r"DTSTART:(\d{8})T(\d{4})")
     endex = re.compile(r"DTEND:\d{8}T(\d{4})")
-    notex = re.compile(r"SUMMARY:(.+?)\s[^\s]*\n")
+    notex = re.compile(r"SUMMARY:(.+?)\s?[^\s]*\n")
     e = [startex, endex, notex]
 
     while True:
