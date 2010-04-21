@@ -44,7 +44,6 @@ def frame(t, l, v = "-", h="|", c="+"):
 
 #reads an ics file at url between (optionally) given dates
 def read(url, startdate=None, enddate=None):
-    print url
     f = urllib2.urlopen(url)
 
     #read title
@@ -97,10 +96,13 @@ def read(url, startdate=None, enddate=None):
     if len(days) > 0:
         #print working hours
         frame(title, l, v="=")
+        dates = set()
         for day in days:
-            s = "| " + day[0].strftime("%d-%m-%Y") + " | " + str(day[1]) + " | " + day[2]
+            date = day[0].strftime("%d-%m-%Y")
+            dates.add(date)
+            s = "| " + date + " | " + str(day[1]) + " | " + day[2]
             print s + repeat(" ", l-len(s)-2) + " |"
-        frame(str(len(days)) + " dag(e), " + str(hourstotal) + " timer.", l)
+        frame(str(len(dates)) + " dag(e), " + str(hourstotal) + " timer.", l)
     else:
         #print no working hours message
         s = "no "
